@@ -10,7 +10,7 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 		if (isSubmitting) {
 			setMembers([...members])
 	}
-		},[isSubmitting, members]);
+		},[members, isSubmitting]);
     return (
 		<div>
         <Form>
