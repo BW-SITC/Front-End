@@ -1,23 +1,36 @@
 import React, { useReducer } from "react";
 import "./App.css";
-
 import { initialState, todoReducer } from "./components/reducers/todoReducer";
 import FormikLoginForm  from "./components/loginPage/LoginForm";
 import { Route, Link, Switch } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute';
 import TodoList from "./components/todos/TodoList";
 import TodoForm from "./components/todos/TodoForm";
-// import TodoClear from "./components/todos/TodoClear";
+import TodoClear from "./components/todos/TodoClear";
 import VolunteerList from './components/VolunteerList'
+import Home from "./components/Home.js"; 
 
 
 function App() {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const LoginForm = FormikLoginForm
   return (
-    <div className="App">
-      {/* <h1>Reducer Todo App</h1> */}
-      <VolunteerList/>
+    
+    
+    <div className='App'>
+    
+    <Route exact path="/" render={props => (
+        <Home {...props}  />
+      )} />
+
+      <h1>Reducer Todo App</h1>
+      <TodoForm dispatch={dispatch} />
+      <TodoList state={state} dispatch={dispatch} />
+      <TodoClear dispatch={dispatch} />
+
+    <FormikLoginForm/>
+
+    <VolunteerList/>
 
       {/* <FormikLoginForm /> */}
       {/* <TodoForm dispatch={dispatch} />
@@ -45,6 +58,7 @@ function App() {
         <Route path="/volunteerList" component={VolunteerList} />
       </Switch>
     </div>
+    
   );
 }
 
