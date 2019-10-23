@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 // import ReactDOM from "react-dom";
-import { withFormik, Form, Field, ResetForm} from "formik";
+import { withFormik, Form, Field} from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import AxiosWithAuth from '../AxiosWithAuth'
 
 function LoginForm({ values, errors, touched, isSubmitting }) {
 	const [members, setMembers] = useState([])
@@ -10,7 +10,7 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 		if (isSubmitting) {
 			setMembers([...members])
 	}
-		},[values]);
+		},[members]);
     return (
 		<div>
         <Form>
@@ -27,22 +27,21 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 				{touched.password && errors.password && <p>{errors.password}</p>}
 				<Field type="password" name="password" placeholder="Password" />
 			</div>
-			<label>
+			{/* <label>
 				<Field type="checkbox" name="tos" checked={values.tos} />
 				Accept TOS
-			</label>
+			</label> */}
 			<Field component="select" name="role">
-				<option value="teamLead">TL</option>
-				<option value="feArch">FE-Arch</option>
-				<option value="beArch">BE-Arch</option>
-				<option value="dev">Dev</option>
-				<option value="uiDev">UI-Dev</option>
+				<option value="admin">Admin</option>
+				<option value="volunteer">Volunteer</option>
+				<option value="student">Student</option>
+				
 			</Field>
 			<button type='submit' disabled={isSubmitting}>Submit</button>
 		</Form>
 	
 		<div>		
-             <h1>I am here in the Display place chilling.</h1>
+          
 		 	 {Array.from(members).map(member => (
                  <div key={member.id}>
 		 			<h2>{member.name}</h2>
@@ -56,13 +55,13 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 }
 
 const FormikLoginForm = withFormik({
-	mapPropsToValues({ name, email, password, tos, role }) {
+	mapPropsToValues({ name, email, password, role }) {
 		return {
 			name: name || "",
 			email: email || "",
 			password: password || "",
-			tos: tos || false,
-			role: role || "Team Lead"
+			// tos: tos || false,
+			role: role || "student"
 		};
 	},
 	validationSchema: Yup.object().shape({
@@ -70,7 +69,7 @@ const FormikLoginForm = withFormik({
 			.email("Email not valid")
 			.required("Email is required"),
 		password: Yup.string()
-        .min(8, "Password must be 8 characters or longer")
+        .min(4, "Password must be 4 characters or longer")
 			.required("Password is required")
         }),
 	handleSubmit(values, { setSubmitting }) {
@@ -78,15 +77,15 @@ const FormikLoginForm = withFormik({
 		// if (values.email === "alreadytaken@atb.dev") {
 		// 	setErrors({ email: "That email is already taken" });
 		// } else {
-			axios
+			AxiosWithAuth()
 			
-				.post("https://reqres.in/api/users", values)
+				.post("/auth/login", values)
 				.then(res => {
 					console.log(res); // Data was created successfully and logs to console
 					// members.push(res.data)
 					// console.log(res)
 					setSubmitting(res)
-                    // ResetForm();
+                    // resetForm();
 					// setSubmitting(false);
 				})
 				.catch(err => {

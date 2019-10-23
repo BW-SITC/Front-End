@@ -1,6 +1,6 @@
 import React from 'react';
 
-const tags = ['Lambda', 'Coding', 'Home', 'Work'];
+const tags = ['Add-student', 'Coding', 'Home', 'Work'];
 
 export default function Tags(props) {
   return (
