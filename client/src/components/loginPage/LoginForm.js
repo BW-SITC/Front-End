@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 // import ReactDOM from "react-dom";
 import { withFormik, Form, Field} from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import AxiosWithAuth from '../AxiosWithAuth'
 
 function LoginForm({ values, errors, touched, isSubmitting }) {
 	const [members, setMembers] = useState([])
@@ -10,7 +10,7 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 		if (isSubmitting) {
 			setMembers([...members])
 	}
-		},[members, isSubmitting]);
+		},[members]);
     return (
 		<div>
         <Form>
@@ -61,7 +61,7 @@ const FormikLoginForm = withFormik({
 			email: email || "",
 			password: password || "",
 			// tos: tos || false,
-			role: role || "Team Lead"
+			role: role || "student"
 		};
 	},
 	validationSchema: Yup.object().shape({
@@ -69,7 +69,7 @@ const FormikLoginForm = withFormik({
 			.email("Email not valid")
 			.required("Email is required"),
 		password: Yup.string()
-        .min(8, "Password must be 8 characters or longer")
+        .min(4, "Password must be 4 characters or longer")
 			.required("Password is required")
         }),
 	handleSubmit(values, { setSubmitting }) {
@@ -77,9 +77,9 @@ const FormikLoginForm = withFormik({
 		// if (values.email === "alreadytaken@atb.dev") {
 		// 	setErrors({ email: "That email is already taken" });
 		// } else {
-			axios
+			AxiosWithAuth()
 			
-				.post("https://reqres.in/api/users", values)
+				.post("/auth/login", values)
 				.then(res => {
 					console.log(res); // Data was created successfully and logs to console
 					// members.push(res.data)

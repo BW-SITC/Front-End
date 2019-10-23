@@ -5,9 +5,9 @@ import { initialState, todoReducer } from "./components/reducers/todoReducer";
 import FormikLoginForm  from "./components/loginPage/LoginForm";
 import { Route, Link, Switch } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute';
-import TodoList from "./components/TodoList";
-import TodoForm from "./components/TodoForm";
-// import TodoClear from "./components/TodoClear";
+import TodoList from "./components/todos/TodoList";
+import TodoForm from "./components/todos/TodoForm";
+// import TodoClear from "./components/todos/TodoClear";
 import VolunteerList from './components/VolunteerList'
 
 
@@ -17,6 +17,7 @@ function App() {
   return (
     <div className="App">
       {/* <h1>Reducer Todo App</h1> */}
+      <VolunteerList/>
 
       {/* <FormikLoginForm /> */}
       {/* <TodoForm dispatch={dispatch} />
@@ -41,7 +42,7 @@ function App() {
         <Route component={LoginForm} />
         <PrivateRoute exact path="/protected" component={TodoForm} />
         <PrivateRoute path="/protected/view" component={TodoList} />
-        <PrivateRoute path="/volunteerList" component={VolunteerList} />
+        <Route path="/volunteerList" component={VolunteerList} />
       </Switch>
     </div>
   );
