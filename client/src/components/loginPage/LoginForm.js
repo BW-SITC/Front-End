@@ -27,22 +27,21 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 				{touched.password && errors.password && <p>{errors.password}</p>}
 				<Field type="password" name="password" placeholder="Password" />
 			</div>
-			<label>
+			{/* <label>
 				<Field type="checkbox" name="tos" checked={values.tos} />
 				Accept TOS
-			</label>
+			</label> */}
 			<Field component="select" name="role">
-				<option value="teamLead">TL</option>
-				<option value="feArch">FE-Arch</option>
-				<option value="beArch">BE-Arch</option>
-				<option value="dev">Dev</option>
-				<option value="uiDev">UI-Dev</option>
+				<option value="admin">Admin</option>
+				<option value="volunteer">Volunteer</option>
+				<option value="student">Student</option>
+				
 			</Field>
 			<button type='submit' disabled={isSubmitting}>Submit</button>
 		</Form>
 	
 		<div>		
-             <h1>I am here in the Display place chilling.</h1>
+          
 		 	 {Array.from(members).map(member => (
                  <div key={member.id}>
 		 			<h2>{member.name}</h2>
@@ -56,12 +55,12 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 }
 
 const FormikLoginForm = withFormik({
-	mapPropsToValues({ name, email, password, tos, role }) {
+	mapPropsToValues({ name, email, password, role }) {
 		return {
 			name: name || "",
 			email: email || "",
 			password: password || "",
-			tos: tos || false,
+			// tos: tos || false,
 			role: role || "Team Lead"
 		};
 	},
