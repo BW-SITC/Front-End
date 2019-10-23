@@ -1,6 +1,5 @@
 import React, { useReducer } from "react";
 import "./App.css";
-import { Route } from "react-router-dom";
 import { initialState, todoReducer } from "./components/reducers/todoReducer";
 import FormikLoginForm  from "./components/loginPage/LoginForm";
 import { Route, Link, Switch } from "react-router-dom";
