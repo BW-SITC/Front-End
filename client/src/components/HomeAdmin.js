@@ -14,7 +14,7 @@ return (
 <TodoForm />
 <VolunteerList/>
 
-</div>cd ..HomeAdmin
+</div>
 
 )}
 
