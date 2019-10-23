@@ -15,7 +15,7 @@ function App() {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const LoginForm = FormikLoginForm
   return (
-    <Router>
+    
     
     <div className='App'>
     
@@ -58,7 +58,7 @@ function App() {
         <Route path="/volunteerList" component={VolunteerList} />
       </Switch>
     </div>
-    </Router>
+    
   );
 }
 
