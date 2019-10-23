@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 // import ReactDOM from "react-dom";
-import { withFormik, Form, Field, ResetForm} from "formik";
+import { withFormik, Form, Field} from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 		if (isSubmitting) {
 			setMembers([...members])
 	}
-		},[values]);
+		},[members, isSubmitting]);
     return (
 		<div>
         <Form>
