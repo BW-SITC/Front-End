@@ -29,10 +29,10 @@ function LoginForm({ role, errors, touched, isSubmitting }) {
           {touched.password && errors.password && <p>{errors.password}</p>}
           <Field type="password" name="password" placeholder="Password" />
         </div>
-        <label>
+        {/* <label>
 				<Field type="checkbox" name="register" checked={volunteer.register} />
 				Register
-			</label>
+			</label> */}
         {/* <Field component="select" name="role">
           <option value="admin" endpoint="auth/login/admin">Admin</option>
           <option value="volunteer" endpoint="auth/login">Volunteer</option>
@@ -62,7 +62,7 @@ const FormikLoginForm = withFormik({
     return {
       name: name || "",
       password: password || "",
-      tos: register || false,
+      // tos: register || false,
       // role: role || "volunteer"
     };
   },
@@ -76,7 +76,7 @@ const FormikLoginForm = withFormik({
   
 
     AxiosWithAuth()
-      .post("auth/login", values)
+      .post("auth/login")
       .then(res => {
         console.log(res); // Data was created successfully and logs to console
         // volunteers.push(res.data)
