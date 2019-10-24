@@ -1,4 +1,4 @@
-import React from "react";
+
 import AxiosWithAuth from '../AxiosWithAuth'
 
 
@@ -24,7 +24,7 @@ export const editTodos = id => dispatch => {
   dispatch({ type: START_EDIT });
 
   AxiosWithAuth
-    .put("admin/${id}/todos") //Todo ID
+    .put(`admin/${id}/todos`) //Todo ID
     .then(res => console.log(res))
     .then(res => dispatch({ type: FETCH_SUCCESS, payload: res }))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
@@ -32,15 +32,15 @@ export const editTodos = id => dispatch => {
 
 
 
-export const START_POST = "START_EDIT";
-export const POST_SUCCESS = "EDIT_SUCCESS";
-export const POST_FAILURE = "EDIT_FAILURE";
+export const START_POST = "START_POST";
+export const POST_SUCCESS = "POST_SUCCESS";
+export const POST_FAILURE = "POST_FAILURE";
 
-export const postTodos = id => dispatch => {
+export const postTodos = props => dispatch => {
   dispatch({ type: START_POST });
 
   AxiosWithAuth()
-    .post("admin/${id}/todos")  //User ID
+    .post(`admin/${props.id}/todos`,props.todo.item)  //User ID
     .then(res => console.log(res))
     .then(res => dispatch({ type: FETCH_SUCCESS, payload: res }))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
