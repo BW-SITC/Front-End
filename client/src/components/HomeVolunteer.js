@@ -12,8 +12,9 @@ const HomeVolunteer = props => {
 
 return (
 <div className='todo.list'>
-<TodoList />
-<TodoClear/>
+{/* <TodoList />
+<TodoClear/> */}
+<h1>Volunteer Home Page</h1>
 <VolunteerList/>
 </div>
 

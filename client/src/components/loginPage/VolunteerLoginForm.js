@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-// import ReactDOM from "react-dom";
+
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import AxiosWithAuth from "../AxiosWithAuth";
-// import HomeVolunteer from "../HomeVolunteer";
 
-function LoginForm({ role, errors, touched, isSubmitting }) {
+
+
+function LoginForm({ errors, touched, isSubmitting }) {
 	
   	const [volunteers, setVolunteers] = useState([]);
-//   const [endpoint, setEndpoint] = useState('')
+
   useEffect(() => {
     if (isSubmitting) {
       setVolunteers([...volunteers]);
@@ -20,7 +21,7 @@ function LoginForm({ role, errors, touched, isSubmitting }) {
         <div>
           <div>
             {touched.name && errors.name && <p>{errors.name}</p>}
-            <Field type="text" name="name" placeholder="Your Name" />
+            <Field type="text" name="username" placeholder="Your Name" />
           </div>
           {/* {touched.email && errors.email && <p>{errors.email}</p>}
           <Field type="email" name="email" placeholder="Email" /> */}
@@ -29,18 +30,12 @@ function LoginForm({ role, errors, touched, isSubmitting }) {
           {touched.password && errors.password && <p>{errors.password}</p>}
           <Field type="password" name="password" placeholder="Password" />
         </div>
-        {/* <label>
-				<Field type="checkbox" name="register" checked={volunteer.register} />
-				Register
-			</label> */}
-        {/* <Field component="select" name="role">
-          <option value="admin" endpoint="auth/login/admin">Admin</option>
-          <option value="volunteer" endpoint="auth/login">Volunteer</option>
-          <option value="student">Student</option>
-        </Field> */}
+      
+     
 		<button type="submit" disabled={isSubmitting}>
           Submit
         </button>
+        
       </Form>
 
       <div>
@@ -57,29 +52,34 @@ function LoginForm({ role, errors, touched, isSubmitting }) {
 }
 
 const FormikLoginForm = withFormik({
-	
- mapPropsToValues({ name, password}) {
+
+  mapPropsToValues({ username, password}) {
     return {
-      name: name || "",
+      name: username || "",
       password: password || "",
       // tos: register || false,
       // role: role || "volunteer"
+      
     };
   },
   validationSchema: Yup.object().shape({
     
     password: Yup.string()
-      .min(4, "Password must be 4 characters or longer")
-      .required("Password is required")
+    .min(4, "Password must be 4 characters or longer")
+    .required("Password is required")
   }),
-  handleSubmit(role, { setSubmitting }) {
-  
+  handleSubmit(values, { setSubmitting }) {
+    
+    console.log('VolunteerLoginForm.js -> %cname:', 'color: purple', values.username)
+    console.log('VolunteerLoginForm.js -> %cpassword:', 'color: green', values.password)
+    
+    
 
     AxiosWithAuth()
-      .post("auth/login")
+      .post("auth/login", values)
       .then(res => {
         console.log(res); // Data was created successfully and logs to console
-        // volunteers.push(res.data)
+        // values.history.push('/protected/volunteer')
         // console.log(res)
         // setSubmitting(res);
         // resetForm();
@@ -87,9 +87,9 @@ const FormikLoginForm = withFormik({
 
       })
       .catch(err => {
-        console.error(err); // There was an error creating the data and logs to console
+        console.error("Nope, POST didn't work:", err); // There was an error creating the data and logs to console
         setSubmitting(false);
-      });
+      })
     }
     
 })(LoginForm);
