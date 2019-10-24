@@ -23,7 +23,7 @@ export const EDIT_FAILURE = "EDIT_FAILURE";
 export const editTodos = id => dispatch => {
   dispatch({ type: START_EDIT });
 
-  AxiosWithAuth()
+  AxiosWithAuth
     .put("admin/${id}/todos") //Todo ID
     .then(res => console.log(res))
     .then(res => dispatch({ type: FETCH_SUCCESS, payload: res }))
@@ -44,4 +44,12 @@ export const postTodos = id => dispatch => {
     .then(res => console.log(res))
     .then(res => dispatch({ type: FETCH_SUCCESS, payload: res }))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
-};
+  };
+  
+  export const TOGGLE_TODO = "TOGGLE_TODO";
+  export const CLEAR_COMPLETED = "CLEAR_COMPLETED";
+
+  export const completeTodos = id => dispatch => {
+  dispatch({ type: TOGGLE_TODO });
+    dispatch({ type: CLEAR_COMPLETED })
+  }

@@ -84,7 +84,19 @@ export const initialState = [
           error: action.payload,
           isFetching: false
         };
-
+          case 'TOGGLE_TODO':
+        return state.map(todo => {
+          return todo.id === action.payload
+            ? { ...todo, completed: !todo.completed }
+            : todo;
+        });
+      case 'CLEAR_COMPLETED':
+        return state.filter(todo => !todo.completed);
+        
       default:
         return state;
-    }}
+    
+    }
+  };
+
+    
