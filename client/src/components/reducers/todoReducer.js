@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {START_FETCHING, FETCH_SUCCESS, FETCH_FAILURE, 
   START_EDIT, EDIT_SUCCESS, EDIT_FAILURE, START_POST,
 POST_SUCCESS, POST_FAILURE} from '../actions/todoActions' 
@@ -92,7 +92,7 @@ export const initialState = [
         });
       case 'CLEAR_COMPLETED':
         return state.filter(todo => !todo.completed);
-        
+
       default:
         return state;
     

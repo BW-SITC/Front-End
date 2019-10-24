@@ -1,7 +1,9 @@
 import React from 'react';
+import { fetchTodos } from "../actions/todoActions";
+import { connect } from "react-redux";
 
-export default function Todo(props) {
-  const dueDate = new Date(props.todo.doBy);
+ const Todo = (props) => {
+  // const dueDate = new Date(props.todo.doBy);
   return (
     <div>
       <h2
@@ -38,18 +40,21 @@ export default function Todo(props) {
         )}
         {props.todo.item}
       </h2>
-      <p
-        style={{
-          color: `${Date.now() > Date.parse(dueDate) ? '#cf6679' : 'white'}`,
-        }}>
-        Do By: {dueDate.toDateString()}{' '}
-        {Date.now() > Date.parse(dueDate) && 'Overdue!'}
-      </p>
-      <p>
-        {props.todo.tags.map(
-          tag => tag !== '' && <span className='tag'>{tag}</span>,
-        )}
-      </p>
+    
+    
     </div>
   );
 }
+
+const mapStatetoProps = state => {
+  return {
+    todoList: state.todoList,
+    isFetching: state.isFetching,
+    error: state.error
+  };
+};
+
+export default connect(
+  mapStatetoProps,
+  { fetchTodos }
+)(Todo);
