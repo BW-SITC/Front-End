@@ -1,5 +1,7 @@
 import React from "react"; 
 import { Link } from "react-router-dom";
+// import HomeVolunteer from './HomeVolunteer'
+// import HomeAdmin from './HomeAdmin'
 import {
     HomeBox,
     HomePageHeading,
@@ -9,31 +11,31 @@ import {
 
 const Home = () => {
 
-    return(
-        <>
+    return (
+      <>
         <div>
-            <HomePageHeading> Welcome To School in the Cloud </HomePageHeading>
-                {/* Links */}
-            <ContainerDiv>
-            <HomeBox>
-                <Link to="/student">
-                    <Paragraph> Students </Paragraph>
-                </Link>
-            </HomeBox>
-            <HomeBox>
-                <Link to="/volunteer"> 
-                    <Paragraph> Volunteers </Paragraph>
-                </Link>
-            </HomeBox>
-            <HomeBox>
-                <Link to="/admin"> 
-                    <Paragraph> Admin </Paragraph>
-                </Link>
-            </HomeBox>
-            </ContainerDiv>
-      </div>
-        </>
-    )
+          <HomePageHeading> Welcome To School in the Cloud </HomePageHeading>
+          {/* Links */}
+          <ContainerDiv>
+            <Link to="/student/home">
+              <HomeBox>
+                <Paragraph> Students </Paragraph>
+              </HomeBox>
+            </Link>
+            <Link to="/volunteer/login">
+              <HomeBox>
+                <Paragraph> Volunteers </Paragraph>
+              </HomeBox>
+            </Link>
+            <Link to="/admin/login">
+              <HomeBox>
+                <Paragraph> Admin </Paragraph>
+              </HomeBox>
+            </Link>
+          </ContainerDiv>
+        </div>
+      </>
+    );
 }
 
 export default Home; 

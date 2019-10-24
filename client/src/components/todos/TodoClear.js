@@ -5,7 +5,7 @@ export default function TodoClear(props) {
     <button
       className='clear-button'
       onClick={() => props.dispatch({ type: 'CLEAR_COMPLETED' })}>
-      Clear completed
+     
     </button>
   );
 }

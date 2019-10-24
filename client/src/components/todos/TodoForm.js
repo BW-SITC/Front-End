@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-import Tags from './Tags';
+// import Tags from './Tags';
 
-export default function TodoForm(props) {
+ const TodoForm = (props) => {
   const [todo, setTodo] = useState('');
-  const [tag, setTag] = useState('');
+  // const [tag, setTag] = useState('');
 
-  const handleSelect = e => {
-    setTag(e.target.value);
-  };
+  // const handleSelect = e => {
+  //   // setTag(e.target.value);
+  // };
 
   return (
     <div className='input-bar'>
@@ -18,12 +18,12 @@ export default function TodoForm(props) {
         placeholder='...todo'
         onChange={e => setTodo(e.target.value)}
       />
-      <Tags handleSelect={handleSelect} />
+      {/* <Tags handleSelect={handleSelect} /> */}
       <button
         onClick={() => {
           props.dispatch({
-            type: 'ADD_TODO',
-            payload: { todo: todo, tag: tag },
+            type: 'START_POST',
+            payload: { todo: todo},
           });
           setTodo('');
         }}>
@@ -32,3 +32,4 @@ export default function TodoForm(props) {
     </div>
   );
 }
+export default TodoForm

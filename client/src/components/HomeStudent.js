@@ -1,5 +1,5 @@
 import React from 'react'
-import VolunteerList from './TodoList'
+import VolunteerList from './VolunteerList'
 
 
 
@@ -18,3 +18,4 @@ return (
 )}
 
 export default HomeStudent
+

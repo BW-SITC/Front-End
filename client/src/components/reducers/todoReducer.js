@@ -1,41 +1,90 @@
+
+import {START_FETCHING, FETCH_SUCCESS, FETCH_FAILURE, 
+  START_EDIT, EDIT_SUCCESS, EDIT_FAILURE, START_POST,
+POST_SUCCESS, POST_FAILURE} from '../actions/todoActions' 
+
+
+
+
 export const initialState = [
     {
       item: 'Learn about reducers',
       completed: false,
       id: 3892987589,
-      doBy: 'September 10, 2019',
-      tags: ['Coding'],
+     
     },
     {
       item: 'Finish todo list',
       completed: false,
       id: 1568146979433,
-      doBy: 'September 10, 2019',
-      tags: ['Lambda'],
+      
     },
-    {
-      item: `Prepare for tomorrow's lecture`,
-      completed: false,
-      id: 1568152250811,
-      doBy: 'September 11, 2019',
-      tags: ['Lambda'],
-    },
+  
   ];
   
   export const todoReducer = (state, action) => {
     switch (action.type) {
-      case 'ADD_TODO':
-        return [
+      case START_FETCHING:
+        return {
           ...state,
-          {
-            item: action.payload.todo,
-            completed: false,
-            id: Date.now(),
-            doBy: Date.now() + 604800000,
-            tags: [action.payload.tag],
-          },
-        ];
-      case 'TOGGLE_TODO':
+          isFetching: true,
+          error: ""
+        };
+      case FETCH_SUCCESS:
+        return {
+          ...state,
+          isFetching: false,
+          error: "",
+          TodoList: action.payload
+        };
+
+      case FETCH_FAILURE:
+        return {
+          ...state,
+          error: action.payload,
+          isFetching: false
+        };
+      case START_EDIT:
+        return {
+          ...state,
+          isFetching: true,
+          error: ""
+        };
+      case EDIT_SUCCESS:
+        return {
+          ...state,
+          isFetching: false,
+          error: "",
+          TodoList: action.payload
+        };
+
+      case EDIT_FAILURE:
+        return {
+          ...state,
+          error: action.payload,
+          isFetching: false
+        };
+      case START_POST:
+        return {
+          ...state,
+          isFetching: true,
+          error: ""
+        };
+      case POST_SUCCESS:
+        return {
+          ...state,
+          isFetching: false,
+          error: "",
+          TodoList: action.payload
+        };
+
+      case POST_FAILURE:
+        return {
+          ...state,
+          error: action.payload,
+          isFetching: false
+        };
+          case 'TOGGLE_TODO':
         return state.map(todo => {
           return todo.id === action.payload
             ? { ...todo, completed: !todo.completed }
@@ -43,7 +92,11 @@ export const initialState = [
         });
       case 'CLEAR_COMPLETED':
         return state.filter(todo => !todo.completed);
+
       default:
         return state;
+    
     }
   };
+
+    

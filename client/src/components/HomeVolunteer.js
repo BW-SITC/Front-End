@@ -1,6 +1,7 @@
 import React from 'react'
-import TodoList from './TodoList'
-import TodoClear from './TodoClear'
+import TodoList from './todos/TodoList'
+import TodoClear from './todos/TodoClear'
+import VolunteerList from './VolunteerList'
 
 
 
@@ -13,6 +14,7 @@ return (
 <div className='todo.list'>
 <TodoList />
 <TodoClear/>
+<VolunteerList/>
 </div>
 
 )}
