@@ -43,11 +43,11 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 	
 		<div>		
              <h1>I am here in the Display place chilling.</h1>
-		 	 {Array.from(members).map(member => (
-                 <div key={member.id}>
-		 			<h2>{member.name}</h2>
-		 			<p>{member.role} </p>
-		 			<p>{member.email} </p>
+		 	 {Array.from(admins).map(admin => (
+                 <div key={admin.id}>
+		 			<h2>{admin.name}</h2>
+		 			<p>{admin.role} </p>
+		 			<p>{admin.email} </p>
 				</div>
 			))}
 				</div>
@@ -85,9 +85,9 @@ const FormikLoginForm = withFormik({
 					console.log(res); // Data was created successfully and logs to console
 					// members.push(res.data)
 					// console.log(res)
-					setSubmitting(res)
+					// setSubmitting(res)
                     // ResetForm();
-					// setSubmitting(false);
+					setSubmitting(false);
 				})
 				.catch(err => {
                     console.error(err); // There was an error creating the data and logs to console
@@ -103,11 +103,11 @@ const FormikLoginForm = withFormik({
 //     return ( 
 //         // <div>
 //         //     <h1>I am here in the Display place chilling.</h1>
-// 		// 	 {Array.from(members).map(member => (
-//         //         <div key={member.id}>
-// 		// 			<h2>{member.name}</h2>
-// 		// 			<p>{member.role} </p>
-// 		// 			<p>{member.email} </p>
+// 		// 	 {Array.from(members).map(admin => (
+//         //         <div key={admin.id}>
+// 		// 			<h2>{admin.name}</h2>
+// 		// 			<p>{admin.role} </p>
+// 		// 			<p>{admin.email} </p>
 // 		// 		</div>
 // 		// 	))}
 // 		// </div>

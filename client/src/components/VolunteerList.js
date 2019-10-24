@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios'
 
-const VolunteerList  = () => {
+const VolunteerList  = (props) => {
 
 const [volunteers, setVolunteers] = useState([])    
     useEffect(() => {
@@ -15,16 +15,18 @@ const [volunteers, setVolunteers] = useState([])
 return (
 <div>
   {volunteers.map(volunteer=>{
-     return <div>
+     return (
+     <div>
+       <h3>Volunteer List</h3>
       <p>{volunteer.name}</p>
-      {/* <p>{volunteer.email}</p> */}
+   
       </div>
-    })}
+  )})}
 
 </div>
+)
 
 
-
-)}
+}
 
 export default VolunteerList
