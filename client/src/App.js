@@ -16,7 +16,7 @@ import Home from "./components/Home.js";
 
 function App() {
   // const [state, dispatch] = useReducer(todoReducer, initialState);
-  const LoginForm = FormikLoginForm;
+  // const LoginForm = FormikLoginForm;
   return (
     <div className="App">
       <Switch>
