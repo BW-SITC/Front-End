@@ -3,6 +3,13 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import AxiosWithAuth from "../AxiosWithAuth";
+import NavBar from "../NavBar";
+import {
+  Heading,
+  Description,
+  Label,
+  
+} from "../styling/styled"
 
 function LoginForm({ values, errors, touched, isSubmitting }) {
 	
@@ -15,7 +22,15 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
   }, [admins]);
   return (
     <div>
+      <NavBar />
+      <Heading> Login as a Admin </Heading>
+      <Description>
+        To Register as a volunteer, you will need your name and password.
+          <br />
+        The password must contain at least 4 characters.
+        </Description>
       <Form>
+        <Label>Your Name</Label>
         <div>
           <div>
             {touched.name && errors.name && <p>{errors.name}</p>}
