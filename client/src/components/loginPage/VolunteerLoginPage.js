@@ -40,20 +40,20 @@ const VolunteerLoginPage = () => {
           <button>Home Page</button>
         </Link>
 
-        <h3>"Registration Form"</h3>
+        <h3>To Register as a new Volunteer please enter your "Name" and a "password" below</h3>
         <form>
           <div className="volunteerPost-form">
             <input
               type="text"
               name="username"
-              placeholder="...name"
+              placeholder="name"
               onChange={handleChange}
             />
             {/* {errors.name && <p>{errors.name}</p>} */}
             <input
               type="password"
               name="password"
-              placeholder="...password"
+              placeholder="password"
               onChange={handleChange}
             />
             {/* {errors.age && <p>{errors.age}</p>} */}

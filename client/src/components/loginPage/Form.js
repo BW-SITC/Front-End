@@ -74,19 +74,11 @@ const FormikLoginForm = withFormik({
 			.required("Password is required")
         }),
 	handleSubmit(values, { setSubmitting }) {
-		// let members =[]
-		// if (values.email === "alreadytaken@atb.dev") {
-		// 	setErrors({ email: "That email is already taken" });
-		// } else {
 			axios
 			
 				.post("https://reqres.in/api/users", values)
 				.then(res => {
-					console.log(res); // Data was created successfully and logs to console
-					// members.push(res.data)
-					// console.log(res)
-					// setSubmitting(res)
-                    // ResetForm();
+					console.log(res); 
 					setSubmitting(false);
 				})
 				.catch(err => {
@@ -96,24 +88,6 @@ const FormikLoginForm = withFormik({
             }
         }
 )(LoginForm);
-
-// const Display = (members => {
-// 	// const [isSubmitting] = useState([])
-//     console.log("Form.js -> %cValues:", "color: fushia", members);
-//     return ( 
-//         // <div>
-//         //     <h1>I am here in the Display place chilling.</h1>
-// 		// 	 {Array.from(members).map(admin => (
-//         //         <div key={admin.id}>
-// 		// 			<h2>{admin.name}</h2>
-// 		// 			<p>{admin.role} </p>
-// 		// 			<p>{admin.email} </p>
-// 		// 		</div>
-// 		// 	))}
-// 		// </div>
-        
-// 	);
-// });
 
 
 export default FormikLoginForm

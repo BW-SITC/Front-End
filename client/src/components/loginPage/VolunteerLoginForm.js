@@ -3,7 +3,13 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import AxiosWithAuth from "../AxiosWithAuth";
-
+import NavBar from "../NavBar";
+import {
+  Heading,
+  Description, 
+  Label,
+  ButtonDiv,
+} from "../styling/styled"
 
 
 function LoginForm({ errors, touched, isSubmitting }) {
@@ -17,25 +23,32 @@ function LoginForm({ errors, touched, isSubmitting }) {
   }, [volunteers]);
   return (
     <div>
+      <NavBar />
+      <Heading> Login as a volunteer </Heading>
+      <Description>
+        To Register as a volunteer, you will need to create a username and password.
+          <br />
+        The password must contain at least 4 characters.
+        </Description>
       <Form>
+        <Label>Your Name</Label>
         <div>
-          <div>
-            {touched.name && errors.name && <p>{errors.name}</p>}
-            <Field type="text" name="username" placeholder="Your Name" />
-          </div>
-          {/* {touched.email && errors.email && <p>{errors.email}</p>}
-          <Field type="email" name="email" placeholder="Email" /> */}
+          {touched.name && errors.name && <p>{errors.name}</p>}
+          <Field type="text" name="username" placeholder="Your Name" />
         </div>
+        <Label>Password</Label>
         <div>
           {touched.password && errors.password && <p>{errors.password}</p>}
           <Field type="password" name="password" placeholder="Password" />
         </div>
       
-     
-		<button type="submit" disabled={isSubmitting}>
+        <ButtonDiv>
+		    <button type="submit" disabled={isSubmitting}>
           Submit
         </button>
-        
+        </ButtonDiv>
+
+
       </Form>
 
       <div>
@@ -43,7 +56,6 @@ function LoginForm({ errors, touched, isSubmitting }) {
           <div key={volunteer.id}>
             <h2>{volunteer.name}</h2>
             <p>{volunteer.role} </p>
-            {/* <p>{volunteer.email} </p> */}
           </div>
         ))}
       </div>
@@ -57,8 +69,7 @@ const FormikLoginForm = withFormik({
     return {
       name: username || "",
       password: password || "",
-      // tos: register || false,
-      // role: role || "volunteer"
+      
       
     };
   },

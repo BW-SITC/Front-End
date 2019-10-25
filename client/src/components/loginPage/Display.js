@@ -15,14 +15,7 @@ console.log('Display.js -> %cprops:', 'color: cyan', props)
        <p> {props.location}</p>
        <p> {props.bio}</p>
        <p> {props.url}</p>
-    
-     {/* <div>
-      {props.followers.map(follower => 
-        <div key={follower.id}>
-            {follower.login}
-      </div>)}
-          
-     </div>   */}
+
      </div>      
         )
     
