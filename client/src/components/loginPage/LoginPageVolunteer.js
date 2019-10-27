@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import VolunteerLoginForm from "./VolunteerLoginForm";
+import VolunteerLoginForm from "./LoginFormVolunteer";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -15,7 +15,7 @@ const VolunteerLoginPage = () => {
   
 
   const handleSubmit = e => {
-    e.preventDefault();
+    // e.preventDefault();
     // dispatch(postVolunteer(setNewVolunteer));
     register();
   }
@@ -28,7 +28,9 @@ const VolunteerLoginPage = () => {
           `https://school-in-cloud.herokuapp.com/api/auth/register/`,
          newVolunteer
         )
-        .then(res => console.log(res))
+        .then(res => 
+         localStorage.setItem("token", res.data.token))
+
         .catch(err =>
           console.error("Err! Good data's gone bad here:", err.response)
         );
@@ -36,7 +38,7 @@ const VolunteerLoginPage = () => {
     return (
       <div>
         <VolunteerLoginForm />
-        <Link to={"/protected/volunteer"}>
+        <Link to={'/protected/volunteer'}>
           <button>Home Page</button>
         </Link>
 
