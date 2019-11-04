@@ -1,46 +1,60 @@
 import React, { useState, useEffect } from "react";
-import VolunteerLoginForm from "./VolunteerLoginForm";
+import FormikLoginForm from "./LoginFormVolunteer";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const VolunteerLoginPage = () => {
-  // console.log('VolunteerLoginPage.js -> %cprops:', 'color: magenta', props)
+
+const LoginPageVolunteer = () => {
+  // console.log('LoginPageVolunteer.js -> %cprops:', 'color: magenta', props)
   const [newVolunteer, setNewVolunteer] = useState([]);
-
-
   const handleChange = e => {
-    setNewVolunteer({ ...setNewVolunteer, [e.target.name]: e.target.value });
+    setNewVolunteer({
+      ...setNewVolunteer,
+      [e.target.name]: e.target.value,
+      [e.target.password]: e.target.value
+    });
   };
   useEffect(() => {register()}, []);
   
 
   const handleSubmit = e => {
-    e.preventDefault();
+    // e.preventDefault();
     // dispatch(postVolunteer(setNewVolunteer));
-    register();
+    register(newVolunteer);
   }
-  console.log('VolunteerLoginPage.js -> %cnewVolunteer:', 'color: deepPink', newVolunteer)
-
+  
+console.log('VolunteerLoginPage.js -> %cnewVolunteer:', 'color: deepPink', newVolunteer)
 
     function register() {
       axios
         .post(
           `https://school-in-cloud.herokuapp.com/api/auth/register/`,
-         newVolunteer
-        )
-        .then(res => console.log(res))
+         newVolunteer)
+         
+      
+        .then(res => 
+         localStorage.setItem("token", res.data.token))
+
         .catch(err =>
-          console.error("Err! Good data's gone bad here:", err.response)
+          console.error("Err! Good data's gone bad here, vol:", err.response)
         );
     }
+    console.log(
+      "LoginPageVolunteer.js -> %cnewVolunteer:",
+      "color: green",
+      newVolunteer
+    );
     return (
       <div>
-        <VolunteerLoginForm />
+        <FormikLoginForm />
         <Link to={"/protected/volunteer"}>
           <button>Home Page</button>
         </Link>
 
-        <h3>To Register as a new Volunteer please enter your "Name" and a "password" below</h3>
+        <h3>
+          To Register as a new Volunteer please enter your "Name" and a
+          "password" below
+        </h3>
         <form>
           <div className="volunteerPost-form">
             <input
@@ -65,4 +79,4 @@ const VolunteerLoginPage = () => {
     );
   };
 
-export default VolunteerLoginPage;
+export default LoginPageVolunteer;

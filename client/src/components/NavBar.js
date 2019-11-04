@@ -1,23 +1,21 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { NavBarStyled, NavBarHeading, HeaderDiv } from "./styling/styled"
+import React from "react";
+import { Link } from "react-router-dom";
+import { NavBarStyled, NavBarHeading, HeaderDiv } from "./styling/styled";
 
-const NavBar = (props) => {
-    return (
-        <>
-            <NavBarStyled>
-                <Link to="/" onClick={() => localStorage.removeItem('token')}>
-                    <i className="/">
-                    </i>
-                </Link>
-                <HeaderDiv>
-                    <NavBarHeading>School in the Clouds</NavBarHeading>
-                    <Link to="/"> </Link>
-                </HeaderDiv>
+const NavBar = props => {
+  return (
+    <>
+      <NavBarStyled>
+        <Link to="/" onClick={() => localStorage.removeItem("token")}>
+          <i className="/"></i>
+        </Link>
+        <HeaderDiv>
+          <NavBarHeading>School in the Clouds</NavBarHeading>
+          <Link to="/"> </Link>
+        </HeaderDiv>
+      </NavBarStyled>
+    </>
+  );
+};
 
-            </NavBarStyled>
-        </>
-    )
-}
-
-export default NavBar
+export default NavBar;
