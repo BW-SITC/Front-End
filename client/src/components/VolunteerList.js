@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios'
+import Volunteer from './Volunteer';
 
 const VolunteerList  = (props) => {
 
@@ -12,19 +13,21 @@ const [volunteers, setVolunteers] = useState([])
     
     // console.log('get response', res);
 },[])
+console.log("VolunteerList.js -> %cvolunteers:", "color: gold", volunteers);
+ 
 return (
-<div>
-  {volunteers.map(volunteer=>{
-     return (
-     <div>
-       <h3>Volunteer List</h3>
-      <p>{volunteer.name}</p>
-   
+  <div className="volunteerList">
+    {volunteers.map(volunteer => (
+      <div>
+        <Volunteer key={volunteer.id} volunteer={volunteer} />
+        <h3>{volunteer.name}</h3>
+        <p>{volunteer.days}</p>
+        <p>{volunteer.availibleTime}</p>
+        <p>{volunteer.country}</p>
       </div>
-  )})}
-
-</div>
-)
+    ))}
+  </div>
+);
 
 
 }

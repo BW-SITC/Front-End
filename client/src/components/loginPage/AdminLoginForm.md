@@ -19,7 +19,7 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
         <div>
           <div>
             {touched.name && errors.name && <p>{errors.name}</p>}
-            <Field type="text" name="name" placeholder="Your Name" />
+            <Field type="text" name="user_name" placeholder="Your Name" />
           </div>
           {/* {touched.email && errors.email && <p>{errors.email}</p>}
           <Field type="email" name="email" placeholder="Email" /> */}
@@ -39,10 +39,10 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
       </Form>
 
       <div>
-        {Array.from(admins).map(member => (
-          <div key={member.id}>
-            <h2>{member.name}</h2>
-            <p>{member.role} </p>
+        {Array.from(admins).map(admin => (
+          <div key={admin.id}>
+            <h2>{admin.name}</h2>
+            <p>{admin.role} </p>
             {/* <p>{member.email} </p> */}
           </div>
         ))}
@@ -53,13 +53,13 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 
 const FormikLoginForm = withFormik({
 	
-  mapPropsToValues({ name, password, role}) {
+  mapPropsToValues({ username, password}) {
     return {
       name: name || "",
    
       password: password || "",
       // tos: tos || false,
-      role: role || "student"
+      // role: role || "student"
     };
   },
   validationSchema: Yup.object().shape({
@@ -69,10 +69,7 @@ const FormikLoginForm = withFormik({
       .required("Password is required")
   }),
   handleSubmit(values, { setSubmitting }) {
-    // let admins =[]
-    // if (values.email === "alreadytaken@atb.dev") {
-    // 	setErrors({ email: "That email is already taken" });
-    // } else {
+    
     AxiosWithAuth()
       .post("auth/login/admin", values)
       .then(res => {
@@ -84,7 +81,7 @@ const FormikLoginForm = withFormik({
         setSubmitting(false);
       })
       .catch(err => {
-        console.error(err); // There was an error creating the data and logs to console
+        console.error('Error from the Login Form',err); 
         setSubmitting(false);
       });
   }

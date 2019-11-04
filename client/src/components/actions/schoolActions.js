@@ -40,7 +40,7 @@ export const postTodos = props => dispatch => {
   dispatch({ type: START_POST });
 
   AxiosWithAuth()
-    .post(`admin/${props.id}/todos`,props.todo.item)  //User ID
+    .post(`admin/${props.id}/todos`,props.todo.instructions)  //User ID
     .then(res => console.log(res))
     .then(res => dispatch({ type: FETCH_SUCCESS, payload: res }))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));

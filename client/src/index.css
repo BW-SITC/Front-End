@@ -12,3 +12,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.volunteerList {
+
+  background: paleturquoise;
+  color: white;
+}
+
+.todoList {
+ background: paleturquoise;
+  color: white;
+
+}
+
+.todoPage {
+ background: paleturquoise;
+  color: white;
+
+}
