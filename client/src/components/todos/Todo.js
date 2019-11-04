@@ -1,60 +1,52 @@
-import React from 'react';
-import { fetchTodos } from "../actions/todoActions";
-import { connect } from "react-redux";
+import React from "react";
+import TodoList from './TodoList';
 
- const Todo = (props) => {
-  // const dueDate = new Date(props.todo.doBy);
+export default function Todo(props) {
+console.log('Todo.js -> %cprops:', 'color: magenta', props.todo.instructions)
+ 
   return (
     <div>
       <h2
         style={{
-          cursor: 'pointer',
-          textDecoration: `${props.todo.completed ? 'line-through' : 'none'}`,
-          opacity: `${props.todo.completed ? '0.2' : '1'}`,
+          cursor: "pointer",
+          textDecoration: `${props.todo.completed ? "line-through" : "none"}`,
+          opacity: `${props.todo.completed ? "0.2" : "1"}`
         }}
         onClick={() =>
-          props.dispatch({ type: 'TOGGLE_TODO', payload: props.todo.id })
-        }>
+          props.dispatch({ type: "TOGGLE_TODO", payload: props.todo.id })
+        }
+      >
         {!props.todo.completed && (
           <span
             style={{
-              height: '12px',
-              width: '12px',
-              border: '2px solid white',
-              borderRadius: '50%',
-              display: 'inline-block',
-              marginRight: '2%',
-            }}></span>
+              height: "12px",
+              width: "12px",
+              border: "2px solid white",
+              borderRadius: "50%",
+              display: "inline-block",
+              marginRight: "2%"
+            }}
+          >
+            {props.todo.instruction}
+          </span>
         )}
         {props.todo.completed && (
           <span
             style={{
-              height: '12px',
-              width: '12px',
-              border: '2px solid white',
-              backgroundColor: 'white',
-              borderRadius: '50%',
-              display: 'inline-block',
-              marginRight: '2%',
-            }}></span>
+              height: "12px",
+              width: "12px",
+              border: "2px solid white",
+              // backgroundColor: "white",
+              borderRadius: "50%",
+              display: "inline-block",
+              marginRight: "2%"
+            }}
+          >
+            {props.todo.instructions}
+          </span>
         )}
-        {props.todo.item}
+        {props.todo.instructions}
       </h2>
-    
-    
     </div>
   );
 }
-
-const mapStatetoProps = state => {
-  return {
-    todoList: state.todoList,
-    isFetching: state.isFetching,
-    error: state.error
-  };
-};
-
-export default connect(
-  mapStatetoProps,
-  { fetchTodos }
-)(Todo);

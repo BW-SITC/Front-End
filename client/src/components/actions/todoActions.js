@@ -5,6 +5,8 @@ import AxiosWithAuth from '../AxiosWithAuth'
 export const START_FETCHING = 'START_FETCHING';
 export const FETCH_SUCCESS = "FETCH_SUCCESS"
 export const FETCH_FAILURE = 'FETCH_FAILURE' 
+
+
 export const fetchTodos = () => dispatch =>{
 	dispatch({type: START_FETCHING});
 
@@ -40,7 +42,7 @@ export const postTodos = props => dispatch => {
   dispatch({ type: START_POST });
 
   AxiosWithAuth()
-    .post(`admin/${props.id}/todos`,props.todo.item)  //User ID
+    .post(`admin/${props.id}/todos`,props.todo)  //User ID
     .then(res => console.log(res))
     .then(res => dispatch({ type: FETCH_SUCCESS, payload: res }))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
